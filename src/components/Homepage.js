@@ -2,10 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MovieItem from "./MovieItem";
 import {AiOutlineSearch} from 'react-icons/ai'
+import { useDispatch } from "react-redux";
+import { SELECT_MOVIE } from "../redux/movieAction";
 
 const Homepage = () => {
   const [trendingData, setTrendingData] = useState(null);
   const [searchText, setSearchText] = useState('');
+
+  const dispatcher = useDispatch()
 
   useEffect(() => {
     // axios
@@ -18,7 +22,7 @@ const Homepage = () => {
 
     axios
       .get(
-        "https://api.themoviedb.org/3/trending/all/day?api_key=2bd0ea0352bda7fcda09e90608b34039"
+        "https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039"
       )
       .then((res) => {
         setTrendingData(res.data);
@@ -26,6 +30,12 @@ const Homepage = () => {
         console.log(res.data);
         console.log(res.data.results);
       });
+
+      dispatcher({
+          type: SELECT_MOVIE,
+          payload: {selectedMovie: null}
+      })
+
   }, []);
 
   const handleSearch = () => {

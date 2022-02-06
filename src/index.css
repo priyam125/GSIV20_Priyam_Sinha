@@ -20,3 +20,7 @@ code {
 .movie  {
   max-width: 175px;
 }
+
+.info-image {
+  max-height: 300px;
+}
