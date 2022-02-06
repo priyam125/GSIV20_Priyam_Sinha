@@ -6,7 +6,6 @@ import MovieInfo from "./components/MovieInfo";
 function App() {
   return (
     <div className="App">
-      Movie Browser
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path='/info' component={MovieInfo} />

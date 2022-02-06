@@ -13,17 +13,17 @@ const MovieItem = ({ id, poster, title, vote_average, overview, data }) => {
       payload: { selectedMovie: data },
     });
   };
-
+ 
   return (
     <Link to='/info'>
       <div
         onClick={handleClick}
-        className="flex flex-col movie shadow-lg rounded-xl border mr-6 mb-4 cursor-pointer"
+        className="flex flex-col movie shadow-lg rounded-xl border mr-6 mb-4 cursor-pointer "
       >
         <img className="rounded-t-xl" src={`${img_300}/${poster}`} alt="new" />
-        <div className="flex justify-between items-center mt-1">
-          <div className="relative ml-1">
-            <div className="">{title}</div>
+        <div className="flex justify-between items-center my-1">
+          <div className="relative ml-1 w-11 overflow-ellipsis whitespace-nowrap title">
+            <span className="">{title}</span>
           </div>
           <div className="mr-1">{vote_average}</div>
         </div>

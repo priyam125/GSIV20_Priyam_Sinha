@@ -18,9 +18,24 @@ code {
 }
 
 .movie  {
-  max-width: 175px;
+  max-width: 200px;
+}
+
+.movie img {
+  
 }
 
 .info-image {
-  max-height: 300px;
+  max-height: 350px;
+}
+
+/* .title {
+  max-width: 150px;
+  text-overflow: ellipsis;
+
+} */
+
+.title span {
+  max-width: 200px;
+  overflow: hidden;
 }

@@ -48,8 +48,8 @@ const MovieInfo = () => {
   }, []);
 
   return (
-    <div className="flex p-4">
-      <div className="">
+    <div className="flex md:flex-row flex-col p-4">
+      <div className="mb-4">
         <img
           className="rounded-t-xl info-image"
           src={`${img_300}/${poster}`}
