@@ -18,11 +18,13 @@ code {
 }
 
 .movie  {
-  max-width: 200px;
+  width: 200px;
+  height: 340px;
 }
 
 .movie img {
-  
+  max-height: 250px;
+
 }
 
 .info-image {
@@ -38,4 +40,8 @@ code {
 .title span {
   max-width: 200px;
   overflow: hidden;
+}
+
+.overview {
+  font-family: 'Open Sans Condensed', sans-serif;
 }

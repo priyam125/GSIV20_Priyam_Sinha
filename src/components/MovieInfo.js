@@ -70,8 +70,9 @@ const MovieInfo = () => {
             <div>{`${actor1} | `}</div>
             <div className="ml-1">{actor2}</div>
           </div>
-          <div className="flex flex-col items-start justify-start">
-            <div className="mt-4">{`Tagline: ${extraData.tagline}`}</div>
+          <div className="flex flex-col items-start justify-start mt-4">
+            {extraData.tagline && <div className="">{`Tagline: ${extraData.tagline}`}</div>}
+            
             <div className="">{`Description: ${extraData.overview}`}</div>
           </div>
         </div>

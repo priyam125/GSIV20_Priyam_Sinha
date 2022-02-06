@@ -20,16 +20,20 @@ const MovieItem = ({ id, poster, title, vote_average, overview, data }) => {
         onClick={handleClick}
         className="flex flex-col movie shadow-lg rounded-xl border mr-6 mb-4 cursor-pointer "
       >
-        <img className="rounded-t-xl" src={`${img_300}/${poster}`} alt="new" />
-        <div className="flex justify-between items-center my-1 relative">
-          <div className=" ml-1 w-2/3 overflow-ellipsis whitespace-nowrap title text-xs font-bold">
-            <span className="">{title}</span>
-          </div>
+        <img className="rounded-t-xl object-contain" src={`${img_300}/${poster}`} alt="new" />
+        <div className="flex justify-between items-center my-1 px-1 py-0.5 relative">
+          <div className="title">{title}</div>
           <div className="mr-1 z-20 font-bold">{vote_average}</div>
         </div>
+        <div className="overflow-hidden overflow-ellipsis overview p-1">{data.tagline ? data.tagline : data.overview}</div>
       </div>
     </Link>
   );
 };
 
 export default MovieItem;
+
+
+// <div className=" ml-1 w-2/3 overflow-ellipsis whitespace-nowrap title text-xs font-bold">
+//             <span className="">{title}</span>
+//           </div>

@@ -2,14 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MovieItem from "./MovieItem";
 import { AiOutlineSearch, AiFillHome } from "react-icons/ai";
+import { BiSkipNextCircle, BiSkipPreviousCircle } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { SELECT_MOVIE, SET_TRENDING_DATA } from "../redux/movieAction";
 import Header from "./Header";
+
 
 const Homepage = () => {
   // const [trendingData, setTrendingData] = useState(null);
   // const [searchText, setSearchText] = useState("");
   const trendingData = useSelector((state) => state.movie.trendingData);
+  const [page, setPage] = useState(1);
 
   const dispatcher = useDispatch();
 
@@ -24,7 +27,7 @@ const Homepage = () => {
 
     axios
       .get(
-        "https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039"
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039&page=${page}`
       )
       .then((res) => {
         // setTrendingData(res.data);
@@ -43,7 +46,8 @@ const Homepage = () => {
     });
 
     console.log(trendingData);
-  }, []);
+    console.log(process.env.REACT_APP_API_KEY);
+  }, [page]);
 
   // useEffect(() => {
   //   handleSearch();
@@ -82,6 +86,16 @@ const Homepage = () => {
   //     });
   // };
 
+  const handleNext = () => {
+    setPage(prevState => prevState + 1)
+  }
+
+  const handlePrevious = () => {
+    if(page > 1) {
+      setPage(prevState => prevState - 1)
+    }
+  }
+
   return (
     <div className="w-screen h-screen overflow-x-clip">
       <Header />
@@ -101,6 +115,11 @@ const Homepage = () => {
               />
             );
           })}
+      </div>
+      <div className="flex items-center justify-center space-x-4">
+          <BiSkipPreviousCircle onClick={handlePrevious} className="h-8 w-8 cursor-pointer" />
+          <div className="font-semibold">{`Page: ${page}`}</div>
+          <BiSkipNextCircle onClick={handleNext} className="h-8 w-8 cursor-pointer"/>
       </div>
     </div>
   );

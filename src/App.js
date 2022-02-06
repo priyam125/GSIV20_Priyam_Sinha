@@ -5,7 +5,7 @@ import MovieInfo from "./components/MovieInfo";
 
 function App() {
   return (
-    <div className="App">
+    <div className="overflow-x-hidden">
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path='/info' component={MovieInfo} />
