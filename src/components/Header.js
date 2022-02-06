@@ -28,7 +28,6 @@ const Header = () => {
           type: SET_TRENDING_DATA,
           payload: { trendingData: res.data },
         });
-        // setSearchText("");
       });
   };
 
@@ -51,11 +50,6 @@ const Header = () => {
   return (
     <div className="flex mb-4 h-12 items-center justify-between border-b-2 px-6 shadow-md">
       <div className="flex items-center">
-        {/*<AiOutlineSearch
-            className="h-8 w-12 cursor-pointer outline-none"
-            onClick={handleSearch}
-          />*/}
-
         {selectedMovie ? (
           <div className="text-lg font-semibold">Movie Details</div>
         ) : (
@@ -66,13 +60,6 @@ const Header = () => {
             className="bg-gray-300 md:w-80 w-48 rounded px-2 py-1"
           ></input>
         )}
-
-        {/*<input
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            placeholder="Search"
-            className="bg-gray-300 md:w-80 w-48 rounded px-2 py-1"
-          ></input>*/}
       </div>
       <Link to="/">
         <div onClick={handleRefresh} className="mr-6 cursor-pointer">

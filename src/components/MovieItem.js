@@ -34,6 +34,3 @@ const MovieItem = ({ id, poster, title, vote_average, overview, data }) => {
 export default MovieItem;
 
 
-// <div className=" ml-1 w-2/3 overflow-ellipsis whitespace-nowrap title text-xs font-bold">
-//             <span className="">{title}</span>
-//           </div>

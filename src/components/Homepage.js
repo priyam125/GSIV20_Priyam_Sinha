@@ -7,24 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { SELECT_MOVIE, SET_TRENDING_DATA } from "../redux/movieAction";
 import Header from "./Header";
 
-
 const Homepage = () => {
-  // const [trendingData, setTrendingData] = useState(null);
-  // const [searchText, setSearchText] = useState("");
   const trendingData = useSelector((state) => state.movie.trendingData);
   const [page, setPage] = useState(1);
 
   const dispatcher = useDispatch();
 
   useEffect(() => {
-    // axios
-    //   .get(
-    //     `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
-
     axios
       .get(
         `https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039&page=${page}`
@@ -36,65 +25,25 @@ const Homepage = () => {
           payload: { trendingData: res.data },
         });
         // setSearchText("");
-        console.log(res.data);
-        console.log(res.data.results);
+        // console.log(res.data);
+        // console.log(res.data.results);
       });
 
     dispatcher({
       type: SELECT_MOVIE,
       payload: { selectedMovie: null },
     });
-
-    console.log(trendingData);
-    console.log(process.env.REACT_APP_API_KEY);
   }, [page]);
 
-  // useEffect(() => {
-  //   handleSearch();
-  // }, [searchText]);
-
-  // const handleSearch = () => {
-  //   console.log(searchText);
-
-  //   axios
-  //     .get(
-  //       `https://api.themoviedb.org/3/search/movie?api_key=2bd0ea0352bda7fcda09e90608b34039&query=${searchText}`
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data.results);
-  //       dispatcher({
-  //         type: SET_TRENDING_DATA,
-  //         payload: { trendingData: res.data },
-  //       });
-  //       // setSearchText("");
-  //     });
-  // };
-
-  // const handleRefresh = () => {
-  //   axios
-  //     .get(
-  //       "https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039"
-  //     )
-  //     .then((res) => {
-  //       dispatcher({
-  //         type: SET_TRENDING_DATA,
-  //         payload: { trendingData: res.data },
-  //       });
-  //       setSearchText("");
-  //       console.log(res.data);
-  //       console.log(res.data.results);
-  //     });
-  // };
-
   const handleNext = () => {
-    setPage(prevState => prevState + 1)
-  }
+    setPage((prevState) => prevState + 1);
+  };
 
   const handlePrevious = () => {
-    if(page > 1) {
-      setPage(prevState => prevState - 1)
+    if (page > 1) {
+      setPage((prevState) => prevState - 1);
     }
-  }
+  };
 
   return (
     <div className="w-screen h-screen overflow-x-clip">
@@ -117,9 +66,15 @@ const Homepage = () => {
           })}
       </div>
       <div className="flex items-center justify-center space-x-4">
-          <BiSkipPreviousCircle onClick={handlePrevious} className="h-8 w-8 cursor-pointer" />
-          <div className="font-semibold">{`Page: ${page}`}</div>
-          <BiSkipNextCircle onClick={handleNext} className="h-8 w-8 cursor-pointer"/>
+        <BiSkipPreviousCircle
+          onClick={handlePrevious}
+          className="h-8 w-8 cursor-pointer"
+        />
+        <div className="font-semibold">{`Page: ${page}`}</div>
+        <BiSkipNextCircle
+          onClick={handleNext}
+          className="h-8 w-8 cursor-pointer"
+        />
       </div>
     </div>
   );
