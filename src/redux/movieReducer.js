@@ -1,7 +1,8 @@
-import { SELECT_MOVIE } from "./movieAction";
+import { SELECT_MOVIE, SET_TRENDING_DATA } from "./movieAction";
 
 const INITIAL_STATE = {
-    selectedMovie: null
+    selectedMovie: null,
+    trendingData: null
 }
 
 
@@ -14,6 +15,13 @@ const movieReducer = (state = INITIAL_STATE, action) => {
           ...state,
           selectedMovie: selectedMovie,
         };
+      }
+      case SET_TRENDING_DATA: {
+        const {trendingData} = action.payload
+        return {
+          ...state,
+          trendingData: trendingData
+        }
       }
       default:
         return state;

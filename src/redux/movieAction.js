@@ -1,1 +1,3 @@
 export const SELECT_MOVIE = 'SELECT_MOVIE';
+export const SET_TRENDING_DATA = 'SET_TRENDING_DATA';
+

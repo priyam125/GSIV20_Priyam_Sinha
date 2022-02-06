@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MovieItem from "./MovieItem";
-import { AiOutlineSearch } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { SELECT_MOVIE } from "../redux/movieAction";
+import { AiOutlineSearch, AiFillHome } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { SELECT_MOVIE, SET_TRENDING_DATA } from "../redux/movieAction";
+import Header from "./Header";
 
 const Homepage = () => {
-  const [trendingData, setTrendingData] = useState(null);
+  // const [trendingData, setTrendingData] = useState(null);
   const [searchText, setSearchText] = useState("");
+  const trendingData = useSelector((state) => state.movie.trendingData);
 
   const dispatcher = useDispatch();
 
@@ -25,7 +27,11 @@ const Homepage = () => {
         "https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039"
       )
       .then((res) => {
-        setTrendingData(res.data);
+        // setTrendingData(res.data);
+        dispatcher({
+          type: SET_TRENDING_DATA,
+          payload: { trendingData: res.data },
+        });
         setSearchText("");
         console.log(res.data);
         console.log(res.data.results);
@@ -35,6 +41,8 @@ const Homepage = () => {
       type: SELECT_MOVIE,
       payload: { selectedMovie: null },
     });
+
+    console.log(trendingData);
   }, []);
 
   useEffect(() => {
@@ -50,25 +58,48 @@ const Homepage = () => {
       )
       .then((res) => {
         console.log(res.data.results);
-        setTrendingData(res.data);
+        dispatcher({
+          type: SET_TRENDING_DATA,
+          payload: { trendingData: res.data },
+        });
         // setSearchText("");
+      });
+  };
+
+  const handleRefresh = () => {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/trending/movie/day?api_key=2bd0ea0352bda7fcda09e90608b34039"
+      )
+      .then((res) => {
+        dispatcher({
+          type: SET_TRENDING_DATA,
+          payload: { trendingData: res.data },
+        });
+        setSearchText("");
+        console.log(res.data);
+        console.log(res.data.results);
       });
   };
 
   return (
     <div className="w-screen h-screen overflow-x-clip">
-      <div className="flex mb-4 h-12 items-center border-b-2 px-6 shadow-md">
-        <AiOutlineSearch
-          className="h-8 w-12 cursor-pointer outline-none"
-          onClick={handleSearch}
-        />
-        <input
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          placeholder="Search"
-          className="bg-gray-300 w-1/5 rounded px-2 py-1"
-        ></input>
-      </div>
+      {/*<div className="flex mb-4 h-12 items-center justify-between border-b-2 px-6 shadow-md">
+        <div className="flex items-center">
+          <AiOutlineSearch
+            className="h-8 w-12 cursor-pointer outline-none"
+            onClick={handleSearch}
+          />
+          <input
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="Search"
+            className="bg-gray-300 md:w-80 w-48 rounded px-2 py-1"
+          ></input>
+        </div>
+        <div onClick={handleRefresh} className="mr-6"><AiFillHome /></div>
+  </div>*/}
+      <Header />
       <div className="flex flex-wrap justify-evenly px-4">
         {trendingData &&
           trendingData.results.map((data, index) => {

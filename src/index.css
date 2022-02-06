@@ -29,11 +29,11 @@ code {
   max-height: 350px;
 }
 
-/* .title {
+.title {
   max-width: 150px;
   text-overflow: ellipsis;
-
-} */
+  font-family: 'Open Sans Condensed', sans-serif;
+}
 
 .title span {
   max-width: 200px;

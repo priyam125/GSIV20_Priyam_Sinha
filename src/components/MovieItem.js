@@ -21,11 +21,11 @@ const MovieItem = ({ id, poster, title, vote_average, overview, data }) => {
         className="flex flex-col movie shadow-lg rounded-xl border mr-6 mb-4 cursor-pointer "
       >
         <img className="rounded-t-xl" src={`${img_300}/${poster}`} alt="new" />
-        <div className="flex justify-between items-center my-1">
-          <div className="relative ml-1 w-11 overflow-ellipsis whitespace-nowrap title">
+        <div className="flex justify-between items-center my-1 relative">
+          <div className=" ml-1 w-2/3 overflow-ellipsis whitespace-nowrap title text-xs font-bold">
             <span className="">{title}</span>
           </div>
-          <div className="mr-1">{vote_average}</div>
+          <div className="mr-1 z-20 font-bold">{vote_average}</div>
         </div>
       </div>
     </Link>
